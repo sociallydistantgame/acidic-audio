@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using TrixelCreative.TrixelAudio.Core;
 using TrixelCreative.TrixelAudio.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,7 +24,7 @@ namespace TrixelCreative.TrixelAudio.Players
 			
 			if (eventData.button == PointerEventData.InputButton.Left)
 			{
-				AudioSource.Play(onClickSound);
+				AudioManager.PlaySound(onClickSound);
 			}
 		}
 	}

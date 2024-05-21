@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TrixelCreative.TrixelAudio.Core;
 using TrixelCreative.TrixelAudio.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,7 +21,7 @@ namespace TrixelCreative.TrixelAudio.Players
 			if (onHoverSound == null)
 				return;
 
-			AudioSource.Play(onHoverSound);
+			AudioManager.PlaySound(onHoverSound);
 		}
 	}
 
@@ -108,7 +109,7 @@ namespace TrixelCreative.TrixelAudio.Players
 			if (ourMass >= colliderMass)
 			{
 				if (soundBank.TryGetRandomSound(out SoundEffectAsset sound))
-					this.AudioSource.Play(sound);
+					AudioManager.PlaySound(sound);
 			}
 		}
 	}

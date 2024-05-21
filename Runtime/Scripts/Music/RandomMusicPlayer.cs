@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using TrixelCreative.TrixelAudio.Core;
 using TrixelCreative.TrixelAudio.Data;
 using TrixelCreative.TrixelAudio.Utility;
 using UnityEngine;
@@ -73,7 +74,7 @@ namespace TrixelCreative.TrixelAudio.Music
 			
 			// Load the song
 			this.currentlyPlayingSong = songToPlay;
-			this.currentSongState = this.audioSource.PlaySong(this.currentlyPlayingSong, false);
+			this.currentSongState = AudioManager.PlaySong(this.currentlyPlayingSong, false);
 			this.currentSongState.Stopped += HandleStopped;
 		}
 		

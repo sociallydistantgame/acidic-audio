@@ -1,4 +1,5 @@
-﻿using TrixelCreative.TrixelAudio.Data;
+﻿using TrixelCreative.TrixelAudio.Core;
+using TrixelCreative.TrixelAudio.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,11 +19,8 @@ namespace TrixelCreative.TrixelAudio.Players
 		{
 			if (!TryGetUiSounds(out UserInterfaceSoundSchemeAsset uiSounds))
 				return;
-
-			if (!AudioSource.TryAcquireAudioSource(out AudioSource pooledSource))
-				return;
 			
-			uiSounds.PlayNavigateSound(pooledSource);
+			uiSounds.PlayNavigateSound();
 		}
 
 		/// <inheritdoc />
@@ -30,11 +28,8 @@ namespace TrixelCreative.TrixelAudio.Players
 		{
 			if (!TryGetUiSounds(out UserInterfaceSoundSchemeAsset uiSounds))
 				return;
-
-			if (!AudioSource.TryAcquireAudioSource(out AudioSource? pooledSource))
-				return;
 			
-			uiSounds.PlayNavigateSound(pooledSource);
+			uiSounds.PlayNavigateSound();
 		}
 
 		/// <inheritdoc />
@@ -42,11 +37,8 @@ namespace TrixelCreative.TrixelAudio.Players
 		{
 			if (!TryGetUiSounds(out UserInterfaceSoundSchemeAsset uiSounds))
 				return;
-
-			if (!AudioSource.TryAcquireAudioSource(out AudioSource pooledSource))
-				return;
 			
-			uiSounds.PlaySelectSound(pooledSource);
+			uiSounds.PlaySelectSound();
 		}
 
 		/// <inheritdoc />
@@ -54,16 +46,14 @@ namespace TrixelCreative.TrixelAudio.Players
 		{
 			if (!TryGetUiSounds(out UserInterfaceSoundSchemeAsset uiSounds))
 				return;
-
-			if (!AudioSource.TryAcquireAudioSource(out AudioSource pooledSource))
-				return;
 			
-			uiSounds.PlaySelectSound(pooledSource);
+			uiSounds.PlaySelectSound();
 		}
 
 		private bool TryGetUiSounds(out UserInterfaceSoundSchemeAsset soundScheme)
 		{
-			return this.AudioSource.TryGetUiSounds(out soundScheme);
+			soundScheme = AudioManager.GuiSounds!;
+			return soundScheme != null;
 		}
 
 		/// <inheritdoc />
@@ -71,11 +61,8 @@ namespace TrixelCreative.TrixelAudio.Players
 		{
 			if (!TryGetUiSounds(out UserInterfaceSoundSchemeAsset uiSounds))
 				return;
-
-			if (!AudioSource.TryAcquireAudioSource(out AudioSource pooledSource))
-				return;
 			
-			uiSounds.PlayCancelSound(pooledSource);
+			uiSounds.PlayCancelSound();
 		}
 	}
 }

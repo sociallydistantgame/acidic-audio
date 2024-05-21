@@ -1,10 +1,13 @@
 ﻿using System;
+using TrixelCreative.TrixelAudio.Core;
 using UnityEngine;
 
 namespace TrixelCreative.TrixelAudio.Data
 {
     [CreateAssetMenu(menuName = "TrixelAudio/Sound Effect")]
-    public class SoundEffectAsset : ScriptableObject
+    public class SoundEffectAsset : 
+        ScriptableObject,
+        ISoundEffect
     {
         [SerializeField]
         private string soundEffectName = string.Empty;

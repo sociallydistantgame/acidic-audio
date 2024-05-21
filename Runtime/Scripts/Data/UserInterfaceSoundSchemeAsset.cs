@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TrixelCreative.TrixelAudio.Core;
+using UnityEngine;
 
 namespace TrixelCreative.TrixelAudio.Data
 {
@@ -14,28 +15,19 @@ namespace TrixelCreative.TrixelAudio.Data
 		[SerializeField]
 		private SoundEffectAsset cancelSound = null!;
 
-		public void PlaySelectSound(AudioSource audioSource)
+		public void PlaySelectSound()
 		{
-			if (selectSound == null)
-				return;
-
-			selectSound.PlayOnAudioSource(audioSource);
+			AudioManager.PlaySound(selectSound);
 		}
 		
-		public void PlayNavigateSound(AudioSource audioSource)
+		public void PlayNavigateSound()
 		{
-			if (navigateSound == null)
-				return;
-
-			navigateSound.PlayOnAudioSource(audioSource);
+			AudioManager.PlaySound(navigateSound);
 		}
 		
-		public void PlayCancelSound(AudioSource audioSource)
+		public void PlayCancelSound()
 		{
-			if (cancelSound == null)
-				return;
-
-			cancelSound.PlayOnAudioSource(audioSource);
+			AudioManager.PlaySound(cancelSound);
 		}
 		
 		

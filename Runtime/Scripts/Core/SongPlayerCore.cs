@@ -2,13 +2,13 @@
 using TrixelCreative.TrixelAudio.Data;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Audio;
 
 namespace TrixelCreative.TrixelAudio
 {
 	public class SongPlayerCore
 	{
-		private readonly TrixelAudioCore core;
-		private readonly CoreConfiguration configuration;
+		private readonly AudioMixerGroup mixer;
 		private readonly AudioSourcePool pool;
 
 		private bool hasStartedNextSong = false;
@@ -21,13 +21,10 @@ namespace TrixelCreative.TrixelAudio
 		private bool isPaused;
 		private bool nextSongLoops;
 
-		public SongPlayerCore(TrixelAudioCore core, CoreConfiguration configuration)
+		public SongPlayerCore(AudioMixerGroup musicGroup)
 		{
-			this.core = core;
-			this.configuration = configuration;
-
-			this.pool = new AudioSourcePool(this.core, 6, "Music");
-			pool.Initialize();
+			this.pool = new AudioSourcePool(6, "Music");
+			this.mixer = musicGroup;
 		}
 
 		public void Update()
@@ -40,15 +37,12 @@ namespace TrixelCreative.TrixelAudio
 				StartNextSong();
 				return;
 			}
-
-			// In case a non-looping song ends without an explicit Stop call.
-			pool.ReclaimUnusedAudioSources();
 			
 			// Update the state of the current song (set its position), after checking
 			// to see if the song has ended.
 			if (this.currentSource != null)
 			{
-				if (!this.currentSource.gameObject.activeSelf)
+				if (!this.currentSource.enabled)
 				{
 					// Song has ended but Stop() wasn't called, report that the song has stopped
 					if (currentSongState != null)
@@ -121,7 +115,6 @@ namespace TrixelCreative.TrixelAudio
 			}
 			
 			isPaused = false;
-			pool.ReclaimUnusedAudioSources();
 			currentSong = null;
 		}
 		
@@ -144,7 +137,7 @@ namespace TrixelCreative.TrixelAudio
 
 				currentSource.loop = loop;
 				currentSource.spatialBlend = 0;
-				currentSource.outputAudioMixerGroup = this.configuration.MusicMixer;
+				currentSource.outputAudioMixerGroup = mixer;
 				song.Setup(currentSource);
 			}
 		}

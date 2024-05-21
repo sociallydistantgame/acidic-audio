@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using TrixelCreative.TrixelAudio.Core;
 using TrixelCreative.TrixelAudio.Data;
 using TrixelCreative.TrixelAudio.Utility;
 using UnityEngine;
@@ -46,7 +47,7 @@ namespace TrixelCreative.TrixelAudio.Music
 		{
 			if (song != null)
 			{
-				this.currentSongState = this.AudioSource.PlaySong(this.song, this.loop);
+				this.currentSongState = AudioManager.PlaySong(this.song, this.loop);
 				this.currentSongState.Stopped += this.HandleSongStopped;
 			}
 		}
