@@ -23,7 +23,6 @@ namespace TrixelCreative.TrixelAudio.Music
 		[SerializeField]
 		private float maximumDelayBetweenTracks = 0f;
 		
-		private TrixelAudioSource audioSource = null!;
 		private SongAsset? currentlyPlayingSong = null;
 		private SongPlayerState? currentSongState = null;
 
@@ -45,7 +44,6 @@ namespace TrixelCreative.TrixelAudio.Music
 		private void Awake()
 		{
 			Assert.IsNotNull(playlist);
-			this.MustGetComponent(out audioSource);
 		}
 
 		private void HandleStopped()

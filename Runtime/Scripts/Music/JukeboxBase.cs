@@ -7,10 +7,8 @@ using UnityEngine;
 
 namespace TrixelCreative.TrixelAudio.Music
 {
-	[RequireComponent(typeof(TrixelAudioSource))]
 	public abstract class JukeboxBase : MonoBehaviour, IJukebox
 	{
-		private TrixelAudioSource audioSource = null!;
 		private SongPlayerState? currentSongState;
 
 		[SerializeField]
@@ -31,13 +29,9 @@ namespace TrixelCreative.TrixelAudio.Music
 		}
 		
 		public SongAsset? Song => this.song;
-
-		protected TrixelAudioSource AudioSource => audioSource;
-
+		
 		private void Awake()
 		{
-			this.MustGetComponent(out audioSource);
-
 			OnAwake();
 		}
 
